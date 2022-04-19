@@ -1,1 +1,1 @@
-# infomaximum
+# test task for infomaximum
