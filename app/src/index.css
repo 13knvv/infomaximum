@@ -53,6 +53,14 @@ code {
   
 }
 
+h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 35px;
+  color: #404064;
+}
+
 h3 {
   font-family: 'Open Sans';
   font-style: normal;
