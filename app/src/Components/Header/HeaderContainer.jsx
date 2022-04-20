@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setIsOpenNavAC } from "../../redux/navReducer"
 import { Header } from "./Header"
@@ -9,6 +9,11 @@ export const HeaderContainer = () => {
   const setIsOpenNav = (bolean) => {
     dispatch(setIsOpenNavAC(bolean))
   }
+
+  useEffect(() => {
+    isOpenNav ? document.body.classList.add('body_noScrooll')
+    : document.body.classList.remove('body_noScrooll')
+  }, [isOpenNav])
 
   return (
     <Header isOpenNav={isOpenNav} 

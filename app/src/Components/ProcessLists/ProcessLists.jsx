@@ -1,9 +1,13 @@
+import { ProcessList } from './ProcessList/ProcessList'
 import s from './ProcessLists.module.css'
 
-export const ProcessLists = () => {
+export const ProcessLists = (props) => {
+  const processLists = props.processLists.map(item => {
+    return <ProcessList key={item.id} data={item}/>
+  })
   return (
-    <div>
-      ProcessLists
+    <div className={s.wrapp}>
+      {processLists}
     </div>
   )
 }

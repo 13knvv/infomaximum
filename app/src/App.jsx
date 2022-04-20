@@ -18,7 +18,7 @@ const App = () => {
             <Routes>
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/process-lists" element={<ProcessListsContainer />} />
-              <Route path="/" element={<ProcessListsContainer />} />
+              <Route path="/" element={<ProfileContainer />} />
             </Routes>
           </div>
         </div>
