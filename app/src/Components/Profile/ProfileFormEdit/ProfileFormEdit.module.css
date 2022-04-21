@@ -1,0 +1,61 @@
+.inputInner {
+	position: relative;
+  width: 435px;
+}
+.passwordControl {
+	position: absolute;
+	top: 12px;
+	right: 5px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../../../assets/svg/passwordControl.svg) 0 0 no-repeat;
+}
+.passwordControl.passwordControlView {
+	background: url(../../../assets/svg/passwordControlView.svg) 0 0 no-repeat;
+}
+
+.inputProfileFormEditWrapp {
+  width: 696px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.inputProfileFormEditWrapp label{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--color-text-subtitle);
+  margin-top: 9px;
+}
+
+.inputInner input{
+	position: relative;
+  width: 435px;
+  height: 36px;
+  padding-left: 12px;
+  border: 1px solid #D6DCE9;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #6879BB;
+}
+
+.errorMessege {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #EE4141;
+  position: relative;
+  top: -10px;
+  height: 2px;
+
+}

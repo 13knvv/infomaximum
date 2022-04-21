@@ -1,3 +1,4 @@
+import React from 'react'
 import s from './ProcessList.module.css'
 import processListArrowSvg from '../../../assets/svg/processListArrowSvg.svg'
 import numberOfExecutionsSvg from '../../../assets/svg/numberOfExecutions.svg'
@@ -8,7 +9,7 @@ import numberOfScenariosSvg from '../../../assets/svg/numberOfScenarios.svg'
 import { NavLink } from "react-router-dom"
 
 export const ProcessList = (props) => {
-  const { id,
+  const { //id,
           name,
           numberOfExecutions,
           averageLeadTime,

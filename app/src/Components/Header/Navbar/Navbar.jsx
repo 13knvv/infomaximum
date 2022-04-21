@@ -1,3 +1,4 @@
+import React from 'react'
 import s from "./Navbar.module.css"
 import proceset from '../../../assets/svg/proceset.svg'
 import menuIconWhite from '../../../assets/svg/menuIconWhite.svg'

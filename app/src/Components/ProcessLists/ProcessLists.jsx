@@ -1,3 +1,4 @@
+import React from 'react'
 import { ProcessList } from './ProcessList/ProcessList'
 import s from './ProcessLists.module.css'
 
