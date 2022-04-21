@@ -1,5 +1,6 @@
 .button {
   background: #FFCE0C;
+  border: 1px solid #FFCE0C;
   border-radius: 4px;
   padding: 10px 24.3px;
   font-family: 'Open Sans';
@@ -8,17 +9,18 @@
   font-size: 12px;
   line-height: 16px;
   color: #333333;
-  border: none;
 }
 
 .button:hover {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.12);
   background: #FFCE0C;
+  border: 1px solid #FFCE0C;
 }
 
 .button:not([disabled]):hover {
   background: #FFD73B;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+  border: 1px solid #FFD73B;
 }
 
 .button:focus {
@@ -29,13 +31,15 @@
 }
 
 .button:not([disabled]):active {
-  background: #FFD73B;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+  background: #FFC40C;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.12);
+  border: 1px solid #FFC40C;
 }
 
 .button:disabled {
   background: #FFCE0C;
   opacity: 0.5;
+  border: 1px solid #FFCE0C;
 }
 
 
