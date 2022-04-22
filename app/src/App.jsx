@@ -1,28 +1,28 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { HeaderContainer } from './Components/Header/HeaderContainer'
-import { LoginContainer } from './Components/Login/LoginContainer'
-import { ProcessListsContainer } from './Components/ProcessLists/ProcessListsContainer'
-import { ProfileContainer } from './Components/Profile/ProfileContainer'
+import { Header } from './Components/Header/Header'
+import { Login } from './Components/Login/Login'
+import { ProcessLists } from './Components/ProcessLists/ProcessLists'
+import { Profile } from './Components/Profile/Profile'
 
 const App = () => {
   const isAuth = false
   return (
     <>
       {isAuth ? (
-        <LoginContainer />
+        <Login />
       ) : (
         <div>
-          <HeaderContainer />
+          <Header />
           <div className="container">
             <Routes>
-              <Route path="/profile" element={<ProfileContainer />} />
+              <Route path="/profile" element={<Profile />} />
               <Route
                 path="/process-lists"
-                element={<ProcessListsContainer />}
+                element={<ProcessLists />}
               />
-              <Route path="/" element={<ProfileContainer />} />
+              <Route path="/" element={<Profile />} />
             </Routes>
           </div>
         </div>
