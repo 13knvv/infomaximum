@@ -83,6 +83,7 @@ export const ProfileFormEdit = () => {
 
             <Field
               name="passwordRepeat"
+              initialValue=""
               label="Повторите пароль"
               placeholder="Не задано"
               component={InputPasswordProfileEdit}

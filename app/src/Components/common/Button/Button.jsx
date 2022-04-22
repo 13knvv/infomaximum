@@ -9,4 +9,13 @@ const Button = (props) => {
     )
 }
 
+export const ButtonAuth = (props) => {
+    return (
+        <button className={s.button + ' ' + s.buttonAuth} {...props}>
+            {props.children}
+        </button>
+    )
+}
+
+
 export default Button

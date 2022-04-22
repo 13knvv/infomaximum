@@ -1,0 +1,70 @@
+.wrapp {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(229.77deg, #6879BB 2.47%, #9300BB 95.42%);
+  
+}
+
+.logo {
+  margin: 0 auto;
+  width: 152px;
+  height: 48px;
+  margin-top: 32px ;
+  margin-bottom: 32px;
+}
+
+.authFormWrapp {
+  margin: 0 auto;
+  width: 424px;
+  min-height: 656px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 36px;
+}
+
+.buttonAuthWrapp {
+  margin-top: 20px;
+}
+
+.link {
+  margin-top: 18px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color:#404064
+}
+
+.link a{
+  color: #3167BA;
+  text-decoration: none;
+  line-height: 19px;
+}
+
+.errorMessage {
+  background-color: #FFE9DB;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  padding: 27px 48px;
+}
+
+.errorMessageText {
+  font-size: 14px;
+  line-height: 19px;
+  color: #333333;
+  margin-left: 26px;
+}
+
+.titleForm {
+  font-size: 18px;
+  line-height: 25px;
+  color: #404064;
+  margin: 0;
+  margin-bottom: 19px;
+}
