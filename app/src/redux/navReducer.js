@@ -1,7 +1,7 @@
-const SET_IS_OPEN_NAV = "SET_IS_OPEN_NAV"
+const SET_IS_OPEN_NAV = 'SET_IS_OPEN_NAV'
 
 let initialState = {
-  isOpenNav: false
+  isOpenNav: false,
 }
 
 const navReducer = (state = initialState, action) => {
@@ -9,14 +9,14 @@ const navReducer = (state = initialState, action) => {
     case SET_IS_OPEN_NAV:
       return {
         ...state,
-        isOpenNav: action.bolean
+        isOpenNav: action.bolean,
       }
 
     default:
       return state
   }
-};
+}
 
-export const setIsOpenNavAC = (bolean) => ({ type: SET_IS_OPEN_NAV, bolean})
+export const setIsOpenNavAC = (bolean) => ({ type: SET_IS_OPEN_NAV, bolean })
 
 export default navReducer

@@ -15,14 +15,14 @@
 	background: url(../../../assets/svg/passwordControlView.svg) 0 0 no-repeat;
 }
 
-.inputProfileFormEditWrapp {
+.inputProfileEditWrapp {
   width: 696px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
 }
 
-.inputProfileFormEditWrapp label{
+.inputProfileEditWrapp label{
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -31,7 +31,7 @@
   margin-top: 9px;
 }
 
-.inputInner input{
+.input{
 	position: relative;
   width: 435px;
   height: 36px;
@@ -45,6 +45,30 @@
   display: flex;
   align-items: center;
   color: #6879BB;
+}
+
+.input:focus {
+  border: 1px solid #415FD5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #415FD5;
+  outline: none;
+}
+
+.inputError{
+	border: 1px solid #EE4141;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.inputError:focus {
+	border: 1px solid #EE4141;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .errorMessege {
