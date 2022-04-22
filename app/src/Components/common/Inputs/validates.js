@@ -1,10 +1,8 @@
 export const validate = (values) => {
   const errors = {}
-
   if (values.passwordRepeat !== values.password) {
     errors.passwordRepeat = 'Пароли должны совпадать'
   }
-  
   return errors
 }
 
@@ -15,7 +13,7 @@ export const composeValidators =
       (error, validator) => error || validator(value),
       undefined
     )
-  }
+}
   
 export const required = (value) => {
   return value ? undefined : 'Произошла ошибка. Поле должно бть заполнено'
@@ -23,12 +21,11 @@ export const required = (value) => {
 
 export const mustBeLetter = (value) => {
   let isValidate = true
-
   value.split('').forEach((item) => {
-  if (!(/^[a-zA-Zа-яА-Я]/.test(item))) {
-    isValidate = false
-  }
-})
+    if (!(/^[a-zA-Zа-яА-Я]/.test(item))) {
+      isValidate = false
+    }
+  })
 
   return !isValidate ? 
             'Произошла ошибка. Допустимы только буквы'

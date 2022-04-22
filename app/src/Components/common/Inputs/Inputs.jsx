@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setIsFormValidAC } from '../../../redux/formReducer'
+import React, { useState } from 'react'
 import s from './Inputs.module.css'
 
 export const InputTextProfileEdit = ({ input, meta, ...props }) => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (meta.error) {
-      dispatch(setIsFormValidAC(false))
-    } else {
-      dispatch(setIsFormValidAC(true))
-    }
-  }, [meta.error])
-
+  
   return (
     <div className={s.inputProfileEditWrapp}>
       <label>{props.label}</label>
@@ -29,15 +18,6 @@ export const InputTextProfileEdit = ({ input, meta, ...props }) => {
 
 export const InputPasswordProfileEdit = ({ input, meta, ...props }) => {
   const [isViewPassword, setIsViewPassword] = useState(false)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (meta.error) {
-      dispatch(setIsFormValidAC(false))
-    } else {
-      dispatch(setIsFormValidAC(true))
-    }
-  }, [meta.error])
 
   return (
     <div className={s.inputProfileEditWrapp}>

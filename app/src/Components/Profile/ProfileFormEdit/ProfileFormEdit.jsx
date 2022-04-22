@@ -9,10 +9,19 @@ import { composeValidators, mustBeLetter, required, tooShort, validate } from '.
 export const ProfileFormEdit = () => {
   const dispatch = useDispatch()
 
-  const onSubmit = (e, form) => {
+  const onSubmit = (e) => {
     console.log('submit', e)
     dispatch(setIsFormValidAC(false))
-    form//.reset()
+  }
+
+  const errorsCheck = (errors) => {
+    dispatch(setIsFormValidAC(true))
+    for (let key in errors) {
+      if (errors[key]) {
+        dispatch(setIsFormValidAC(false))
+        break
+      } 
+    }
   }
 
   return (
@@ -20,9 +29,10 @@ export const ProfileFormEdit = () => {
       <Form
         validate={validate}
         onSubmit={onSubmit}
-        
-        render={({ handleSubmit, form }) => (
-          <form onSubmit={e => handleSubmit(e, form)}
+        render={({ handleSubmit, errors}) => (
+          <form onSubmit={e => handleSubmit(e)}
+                onChange={() => errorsCheck(errors)}
+                onBlur={() => errorsCheck(errors)}
            id="profileFormEdit">
             
             <Field

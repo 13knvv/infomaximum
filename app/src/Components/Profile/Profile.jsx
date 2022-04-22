@@ -5,13 +5,13 @@ import { ProfileFormEdit } from './ProfileFormEdit/ProfileFormEdit'
 import { useSelector } from 'react-redux'
 
 export const Profile = () => {
-  const isOpenNav = useSelector((state) => state.form.isFormValid)
+  const isFormValid = useSelector((state) => state.form.isFormValid)
 
   return (
     <div>
       <div className={s.header}>
         <h1>Борис Годунов. Редактирование</h1>
-        <Button type="submit" form="profileFormEdit" disabled={!isOpenNav}>
+        <Button type="submit" form="profileFormEdit" disabled={!isFormValid}>
           Сохранить
         </Button>
       </div>
