@@ -3,13 +3,12 @@ import { NavLink } from 'react-router-dom'
 import s from '../Authorization.module.css'
 import errorSvg from './../../../assets/svg/errorSvg.svg'
 import { Form, Field } from 'react-final-form'
-import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { InputPasswordAuthorization, InputTextAuthorization } from '../../common/Inputs/Inputs'
 import { ButtonAuth } from '../../common/Button/Button'
 
-export const Register = () => {
+export const Register = (props) => {
   const onSubmit = (e) => {
-    console.log('submit', e)
+    props.onSubmitRegister(e)
   }
 
   return (
@@ -17,7 +16,7 @@ export const Register = () => {
       <div className={s.authForm}>
         <h1 className={s.titleForm}>Регистрация</h1>
         <Form
-          validate={validate}
+          validate={props.validate}
           onSubmit={onSubmit}
           render={({ handleSubmit, invalid }) => (
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -26,7 +25,11 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Имя"
                 component={InputTextAuthorization}
-                validate={composeValidators(required, mustBeLetter, tooShort('Имя', 2, 'ое'))}
+                validate={props.composeValidators(
+                  props.required,
+                  props.mustBeLetter,
+                  props.tooShort('Имя', 2, 'ое')
+                )}
               />
 
               <Field
@@ -34,7 +37,11 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Фамилия"
                 component={InputTextAuthorization}
-                validate={composeValidators(required, mustBeLetter, tooShort('Фамилия', 2, 'ое'))}
+                validate={props.composeValidators(
+                  props.required,
+                  props.mustBeLetter,
+                  props.tooShort('Фамилия', 2, 'ое')
+                )}
               />
 
               <Field
@@ -42,7 +49,10 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Электронная почта"
                 component={InputTextAuthorization}
-                validate={composeValidators(required, tooShort('Электронная почта', 6, 'ая'))}
+                validate={props.composeValidators(
+                  props.required,
+                  props.tooShort('Электронная почта', 6, 'ая')
+                )}
               />
 
               <Field
@@ -50,7 +60,10 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Введите пароль"
                 component={InputPasswordAuthorization}
-                validate={composeValidators(required, tooShort('Пароль', 8, 'ий'))}
+                validate={props.composeValidators(
+                  props.required,
+                  props.tooShort('Пароль', 8, 'ий')
+                )}
               />
 
               <Field

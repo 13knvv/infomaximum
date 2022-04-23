@@ -2,9 +2,9 @@ import React from 'react'
 import { Route, Routes} from 'react-router-dom'
 import './App.css'
 import { Authorization } from './Components/Authorization/Authorization'
-import { Header } from './Components/Header/Header'
-import { ProcessLists } from './Components/ProcessLists/ProcessLists'
-import { Profile } from './Components/Profile/Profile'
+import { HeaderContainer } from './Components/Header/HeaderContainer'
+import { ProcessListContainer } from './Components/ProcessList/ProcessListContainer'
+import { ProfileContainer } from './Components/Profile/ProfileContainer'
 
 const App = () => {
   const isAuth = false
@@ -14,12 +14,12 @@ const App = () => {
         <Authorization />
       ) : (
         <div>
-          <Header />
+          <HeaderContainer />
           <div className="container">
             <Routes>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/process-lists" element={<ProcessLists />} />
-              <Route path="/" element={<Profile />} />
+              <Route path="/profile" element={<ProfileContainer />} />
+              <Route path="/process-lists" element={<ProcessListContainer />} />
+              <Route path="/" element={<ProfileContainer />} />
             </Routes>
           </div>
         </div>

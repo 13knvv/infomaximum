@@ -1,11 +1,12 @@
 import React from 'react'
 import s from './Authorization.module.css'
 import logoProceset from '../../assets/svg/logoProceset.svg'
-import { Register } from './Register/Register'
+import { RegisterContainer } from './Register/RegisterContainer'
 import { Route, Routes } from 'react-router-dom'
-import { Login } from './Login/Login'
+import { LoginContainer } from './Login/LoginContainer'
 
 export const Authorization = () => {
+  
   return (
     <div className={s.wrapp}>
       <div className={s.logo}>
@@ -13,9 +14,9 @@ export const Authorization = () => {
       </div>
       <div className={s.authFormWrapp}>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Login />} />
+          <Route path="/login" element={<LoginContainer />} />
+          <Route path="/register" element={<RegisterContainer />} />
+          <Route path="*" element={<LoginContainer />} />
         </Routes>
       </div>
     </div>

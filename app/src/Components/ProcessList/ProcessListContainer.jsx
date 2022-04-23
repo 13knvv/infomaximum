@@ -1,8 +1,7 @@
 import React from 'react'
-import { ProcessList } from './ProcessList/ProcessList'
-import s from './ProcessLists.module.css'
+import { ProcessList } from './ProcessList'
 
-let processLists = [
+let processListData = [
   { id: 1,
     name: 'Рассмотрение кредитной заявки',
     numberOfExecutions: '322 567',
@@ -49,13 +48,7 @@ let processLists = [
   }
 ]
 
-export const ProcessLists = () => {
-  const processListsComponents = processLists.map(item => {
-    return <ProcessList key={item.id} data={item}/>
-  })
-  return (
-    <div className={s.wrapp}>
-      {processListsComponents}
-    </div>
-  )
+export const ProcessListContainer = () => {
+  
+  return <ProcessList processListData={processListData} />
 }

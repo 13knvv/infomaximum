@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './ProcessList.module.css'
+import s from './Process.module.css'
 import processListArrowSvg from '../../../assets/svg/processListArrowSvg.svg'
 import numberOfExecutionsSvg from '../../../assets/svg/numberOfExecutions.svg'
 import averageLeadTimeSvg from '../../../assets/svg/averageLeadTime.svg'
@@ -8,7 +8,7 @@ import employeesInvolvedProcessSvg from '../../../assets/svg/employeesInvolvedPr
 import numberOfScenariosSvg from '../../../assets/svg/numberOfScenarios.svg'
 import { NavLink } from "react-router-dom"
 
-export const ProcessList = (props) => {
+export const Process = (props) => {
   const { //id,
           name,
           numberOfExecutions,
@@ -88,7 +88,6 @@ export const ProcessList = (props) => {
           </div>
         </div>
       </div>
-      
     </div>
   )
 }
