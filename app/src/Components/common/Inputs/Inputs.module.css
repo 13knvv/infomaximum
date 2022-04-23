@@ -40,10 +40,7 @@
   padding-left: 11px;
   border: 1px solid #D6DCE9;
   border-radius: 4px;
-  font-style: normal;
-  font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
   display: flex;
   align-items: center;
   color: #6879BB;
@@ -58,9 +55,7 @@
   border: 1px solid #415FD5;
   box-sizing: border-box;
   border-radius: 4px;
-  font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
   color: #415FD5;
   outline: none;
 }

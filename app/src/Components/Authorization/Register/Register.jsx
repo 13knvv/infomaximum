@@ -3,37 +3,13 @@ import { NavLink } from 'react-router-dom'
 import s from '../Authorization.module.css'
 import errorSvg from './../../../assets/svg/errorSvg.svg'
 import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  composeValidators,
-  mustBeLetter,
-  required,
-  tooShort,
-  validate,
-} from '../../common/Inputs/validates'
-import { setIsFormValidAC } from '../../../redux/formReducer'
-import {
-  InputPasswordAuthorization,
-  InputTextAuthorization,
-} from '../../common/Inputs/Inputs'
+import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
+import { InputPasswordAuthorization, InputTextAuthorization } from '../../common/Inputs/Inputs'
 import { ButtonAuth } from '../../common/Button/Button'
 
 export const Register = () => {
-  const dispatch = useDispatch()
-  const isFormValid = useSelector((state) => state.form.isFormValid)
-
   const onSubmit = (e) => {
     console.log('submit', e)
-  }
-
-  const errorsCheck = (errors) => {
-    dispatch(setIsFormValidAC(true))
-    for (let key in errors) {
-      if (errors[key]) {
-        dispatch(setIsFormValidAC(false))
-        break
-      }
-    }
   }
 
   return (
@@ -41,24 +17,16 @@ export const Register = () => {
       <div className={s.authForm}>
         <h1 className={s.titleForm}>Регистрация</h1>
         <Form
-        validate={validate}
+          validate={validate}
           onSubmit={onSubmit}
-          render={({ handleSubmit, errors }) => (
-            <form
-              onSubmit={(e) => handleSubmit(e)}
-              onChange={() => errorsCheck(errors)}
-              onBlur={() => errorsCheck(errors)}
-            >
+          render={({ handleSubmit, invalid }) => (
+            <form onSubmit={(e) => handleSubmit(e)}>
               <Field
                 name="firstName"
                 initialValue=""
                 placeholder="Имя"
                 component={InputTextAuthorization}
-                validate={composeValidators(
-                  required,
-                  mustBeLetter,
-                  tooShort('Имя', 2, 'ое')
-                )}
+                validate={composeValidators(required, mustBeLetter, tooShort('Имя', 2, 'ое'))}
               />
 
               <Field
@@ -66,11 +34,7 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Фамилия"
                 component={InputTextAuthorization}
-                validate={composeValidators(
-                  required,
-                  mustBeLetter,
-                  tooShort('Фамилия', 2, 'ое')
-                )}
+                validate={composeValidators(required, mustBeLetter, tooShort('Фамилия', 2, 'ое'))}
               />
 
               <Field
@@ -78,10 +42,7 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Электронная почта"
                 component={InputTextAuthorization}
-                validate={composeValidators(
-                  required,
-                  tooShort('Электронная почта', 6, 'ая')
-                )}
+                validate={composeValidators(required, tooShort('Электронная почта', 6, 'ая'))}
               />
 
               <Field
@@ -89,10 +50,7 @@ export const Register = () => {
                 initialValue=""
                 placeholder="Введите пароль"
                 component={InputPasswordAuthorization}
-                validate={composeValidators(
-                  required,
-                  tooShort('Пароль', 8, 'ий')
-                )}
+                validate={composeValidators(required, tooShort('Пароль', 8, 'ий'))}
               />
 
               <Field
@@ -103,7 +61,7 @@ export const Register = () => {
               />
 
               <div className={s.buttonAuthWrapp}>
-                <ButtonAuth type="submit" disabled={!isFormValid}>
+                <ButtonAuth type="submit" disabled={invalid}>
                   Применить и войти
                 </ButtonAuth>
               </div>

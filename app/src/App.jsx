@@ -10,7 +10,7 @@ const App = () => {
   const isAuth = false
   return (
     <>
-      {!isAuth ? (
+      {isAuth ? (
         <Authorization />
       ) : (
         <div>
