@@ -6,13 +6,16 @@ import { Form, Field } from 'react-final-form'
 import { ButtonAuth } from '../../common/Button/Button'
 import { InputPasswordAuthorization, InputTextAuthorization } from '../../common/Inputs/Inputs'
 
+
 export const Login = (props) => {
-  const onSubmit = (e) => {
-    props.onSubmitLogin(e)
+
+  const onSubmit = (dataLoginForm) => {
+     props.onSubmitLogin(dataLoginForm)  //"qq2@gmail.com", password: "1q2w3e4r"
   }
 
   return (
     <>
+      {}
       <div className={s.authForm}>
         <Form
           onSubmit={onSubmit}
@@ -52,10 +55,11 @@ export const Login = (props) => {
           <NavLink to="/register">Зарегистрироваться</NavLink>
         </div>
       </div>
-      <div className={s.errorMessage}>
+      { props.errorMessage 
+            && <div className={s.errorMessage}>
         <img src={errorSvg} alt="" />
-        <div className={s.errorMessageText}>Сообщение об ошибке</div>
-      </div>
+        <div className={s.errorMessageText}>{props.errorMessage}</div>
+      </div>}
     </>
   )
 }

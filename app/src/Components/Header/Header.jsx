@@ -4,7 +4,6 @@ import iconMenuButton from '../../assets/svg/menu.svg'
 import { Navbar } from './Navbar/Navbar'
 
 export const Header = (props) => {
-
   return (
     <header className={s.wrapp}>
       <div className={s.menuButton} onClick={() => props.setIsOpenNav(true)}>
@@ -13,7 +12,12 @@ export const Header = (props) => {
         </div>
         <div>Меню</div>
       </div>
-      <Navbar isOpenNav={props.isOpenNav} setIsOpenNav={props.setIsOpenNav} />
+      <Navbar
+        isOpenNav={props.isOpenNav}
+        setIsOpenNav={props.setIsOpenNav}
+        removeToken={props.removeToken}
+        onLogout={props.onLogout}
+      />
     </header>
   )
 }

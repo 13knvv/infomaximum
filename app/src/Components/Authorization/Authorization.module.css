@@ -52,6 +52,11 @@
   padding: 27px 48px;
 }
 
+.errorMessage img {
+  width: 48px;
+  height: 48px;
+}
+
 .errorMessageText {
   font-size: 14px;
   line-height: 19px;
