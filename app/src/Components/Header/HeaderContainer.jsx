@@ -9,6 +9,7 @@ import { Header } from './Header'
 export const HeaderContainer = () => {
   const dispatch = useDispatch()
   const isOpenNav = useSelector( state => state.nav.isOpenNav)
+  const userName = useSelector( state => state.auth.currentUser.firstName)
   const setIsOpenNav = (bolean) => {
     dispatch(setIsOpenNavAC(bolean))
   }
@@ -26,6 +27,9 @@ export const HeaderContainer = () => {
   }
 
   return (
-    <Header setIsOpenNav={setIsOpenNav} isOpenNav={isOpenNav} onLogout={onLogout} />
+    <Header setIsOpenNav={setIsOpenNav} 
+            isOpenNav={isOpenNav} 
+            onLogout={onLogout} 
+            userName={userName} />
   )
 }

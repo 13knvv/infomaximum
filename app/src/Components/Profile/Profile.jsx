@@ -5,10 +5,10 @@ import { InputPasswordProfileEdit, InputTextProfileEdit } from '../common/Inputs
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../common/Inputs/validates'
 import Button from '../common/Button/Button'
 
-export const Profile = () => {
+export const Profile = (props) => {
 
-  const onSubmit = (e) => {
-    console.log('submit', e)
+  const onSubmit = (newDataUser) => {
+    props.onSubmitEditUser(newDataUser)
   }
 
   return (
@@ -20,9 +20,9 @@ export const Profile = () => {
           <>
             <div>
               <div className={s.header}>
-                <h1>Борис Годунов. Редактирование</h1>
-                <Button type="submit" form="profileFormEdit" disabled={invalid}>
-                  Сохранить
+                <h1>{props.currentUser.firstName + ' ' + props.currentUser.secondName}. Редактирование</h1>
+                <Button type="submit" form="profileFormEdit" disabled={invalid} >
+                  {props.isSaved ? 'Сохранено' : 'Сохранить'}
                 </Button>
               </div>
               <div className={s.body}>
@@ -30,16 +30,18 @@ export const Profile = () => {
 
                   <Field
                     name="firstName"
-                    initialValue="Борис"
+                    initialValue={props.currentUser.firstName}
                     label="Имя"
+                    placeholder="Не задано"
                     component={InputTextProfileEdit}
                     validate={composeValidators(required, mustBeLetter, tooShort('Имя', 2, 'ое'))}
                   />
 
                   <Field
                     name="secondName"
-                    initialValue="Годунов"
+                    initialValue={props.currentUser.secondName}
                     label="Фамилия"
+                    placeholder="Не задано"
                     component={InputTextProfileEdit}
                     validate={composeValidators(
                       required,
@@ -50,18 +52,20 @@ export const Profile = () => {
 
                   <Field
                     name="email"
-                    initialValue="qwerty@yandex.ru"
+                    initialValue={props.currentUser.email}
                     label="Электронная почта"
+                    placeholder="Не задано"
                     component={InputTextProfileEdit}
                     validate={composeValidators(required, tooShort('Электронная почта', 6, 'ая'))}
                   />
 
                   <Field
                     name="password"
-                    initialValue="1q2w3e4r"
+                    initialValue=''
                     label="Новый пароль"
+                    placeholder="Не задано"
                     component={InputPasswordProfileEdit}
-                    validate={composeValidators(required, tooShort('Пароль', 8, 'ий'))}
+                    validate={composeValidators(tooShort('Пароль', 8, 'ий'))}
                   />
 
                   <Field
@@ -75,6 +79,7 @@ export const Profile = () => {
                 </form>
               </div>
             </div>
+            <div>{props.errorMessage}</div>
           </>
         )}
       />

@@ -28,7 +28,7 @@ export const Navbar = (props) => {
               <div className={s.iconItem}>
                 <img src={user} alt="" />
               </div>
-              <div className={s.titleItem}>Username</div>
+              <div className={s.titleItem}>{props.userName}</div>
             </li>
           </NavLink>
           <NavLink to="/process-lists" onClick={() => props.setIsOpenNav(false)}>

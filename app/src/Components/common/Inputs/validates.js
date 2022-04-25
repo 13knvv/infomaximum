@@ -37,3 +37,4 @@ export const tooShort = (item, number, oeay) => (value) => {
     ? `Произошла ошибка. ${item} слишком коротк${oeay}`
     : undefined
 }
+

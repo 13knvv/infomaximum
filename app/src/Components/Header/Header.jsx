@@ -17,6 +17,7 @@ export const Header = (props) => {
         setIsOpenNav={props.setIsOpenNav}
         removeToken={props.removeToken}
         onLogout={props.onLogout}
+        userName={props.userName}
       />
     </header>
   )

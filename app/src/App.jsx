@@ -2,23 +2,23 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes, Navigate} from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { GET_CURRENT_USER_ID } from './api/GetCurrentUser'
+import { GET_CURRENT_USER } from './api/GetCurrentUser'
 import './App.css'
 import { Authorization } from './Components/Authorization/Authorization'
 import { HeaderContainer } from './Components/Header/HeaderContainer'
 import { ProcessListContainer } from './Components/ProcessList/ProcessListContainer'
 import { ProfileContainer } from './Components/Profile/ProfileContainer'
-import { setIsAuthAC } from './redux/authReducer'
+import { setCurrentUserAC, setIsAuthAC } from './redux/authReducer'
 
 const App = () => {
   const isAuth = useSelector( state => state.auth.isAuth)
-  const { data, loading } = useQuery(GET_CURRENT_USER_ID)
+  const { data, loading } = useQuery(GET_CURRENT_USER)
   const dispatch = useDispatch() 
 
   useEffect(() => {
     if (data) {
       dispatch(setIsAuthAC(true))
-      
+      dispatch(setCurrentUserAC(data.currentUser))
     }
   }, [data])
 
