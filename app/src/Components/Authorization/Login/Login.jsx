@@ -10,7 +10,7 @@ import { InputPasswordAuthorization, InputTextAuthorization } from '../../common
 export const Login = (props) => {
 
   const onSubmit = (dataLoginForm) => {
-     props.onSubmitLogin(dataLoginForm)  //"qq2@gmail.com", password: "1q2w3e4r"
+     props.onSubmitLogin(dataLoginForm)
   }
 
   return (

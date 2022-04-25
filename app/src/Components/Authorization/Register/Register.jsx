@@ -7,8 +7,8 @@ import { InputPasswordAuthorization, InputTextAuthorization } from '../../common
 import { ButtonAuth } from '../../common/Button/Button'
 
 export const Register = (props) => {
-  const onSubmit = (e) => {
-    props.onSubmitRegister(e)
+  const onSubmit = (dataRegisterForm) => {
+    props.onSubmitRegister(dataRegisterForm)
   }
 
   return (
@@ -85,10 +85,11 @@ export const Register = (props) => {
           Уже зарегистрированы? <NavLink to="/login">Вход</NavLink>
         </div>
       </div>
-      <div className={s.errorMessage}>
+      { props.errorMessage 
+            && <div className={s.errorMessage}>
         <img src={errorSvg} alt="" />
-        <div className={s.errorMessageText}>Сообщение об ошибке</div>
-      </div>
+        <div className={s.errorMessageText}>{props.errorMessage}</div>
+      </div>}
     </>
   )
 }

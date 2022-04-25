@@ -22,6 +22,7 @@ export const HeaderContainer = () => {
   const onLogout = () => {
     removeToken()
     dispatch(setIsAuthAC(false))
+    setIsOpenNav(false)
   }
 
   return (

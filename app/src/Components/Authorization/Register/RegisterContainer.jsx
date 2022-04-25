@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { setIsAuthAC } from '../../../redux/authReducer'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { Register } from './Register'
+import { useMutation } from '@apollo/client'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../../../token/token'
+import { REGISTER } from '../../../api/Signup'
 
 export const RegisterContainer = () => {
-  
-  const onSubmitRegister = (e) => {
-    console.log('submit', e)
+  const [onRegister] = useMutation(REGISTER)
+  const [errorMessage, setErrorMessage] = useState('')
+  const dispatch = useDispatch()
+
+  const onSubmitRegister = (dataRegisterForm) => {
+    onRegister({ variables: {  firstName: dataRegisterForm.firstName,
+                            secondName: dataRegisterForm.secondName,
+                            email: dataRegisterForm.email, 
+                            password: dataRegisterForm.password } })
+    .then( response => {
+      setErrorMessage('')
+      setToken(response.data.signup)
+      dispatch(setIsAuthAC(true))
+    })
+    .catch((error)=> {
+      setErrorMessage(error.message)
+    }
+      )
   }
 
   return <>
@@ -14,6 +34,7 @@ export const RegisterContainer = () => {
                 mustBeLetter={mustBeLetter}
                 required={required}
                 tooShort={tooShort}
-                validate={validate} />
+                validate={validate}
+                errorMessage={errorMessage} />
   </>
 }

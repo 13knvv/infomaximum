@@ -24,7 +24,6 @@ export const LoginContainer = () => {
       setErrorMessage(error.message)
     }
       )
-   
   }
 
   return (
