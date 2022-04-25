@@ -4,7 +4,7 @@ import { Login } from './Login'
 import { LOGIN } from '../../../api/Login'
 import { useMutation } from '@apollo/client'
 import { useDispatch } from 'react-redux'
-import { setIsAuthAC } from '../../../redux/authReducer'
+import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { setToken } from '../../../token/token'
 
 
@@ -19,6 +19,7 @@ export const LoginContainer = () => {
       setErrorMessage('')
       setToken(response.data.login.token)
       dispatch(setIsAuthAC(true))
+      dispatch(setCurrentUserAC(response.data.login.user))
     })
     .catch((error)=> {
       setErrorMessage(error.message)

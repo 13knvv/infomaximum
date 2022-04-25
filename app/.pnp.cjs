@@ -43,6 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["final-form", "npm:4.20.6"],\
             ["graphql", "npm:16.3.0"],\
             ["jwt-decode", "npm:3.1.2"],\
+            ["moment", "npm:2.29.3"],\
             ["normalize.css", "npm:8.0.1"],\
             ["react", "npm:18.0.0"],\
             ["react-dom", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:18.0.0"],\
@@ -5183,6 +5184,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["final-form", "npm:4.20.6"],\
             ["graphql", "npm:16.3.0"],\
             ["jwt-decode", "npm:3.1.2"],\
+            ["moment", "npm:2.29.3"],\
             ["normalize.css", "npm:8.0.1"],\
             ["react", "npm:18.0.0"],\
             ["react-dom", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:18.0.0"],\
@@ -11287,6 +11289,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mkdirp-npm-1.0.4-37f6ef56b9-a96865108c.zip/node_modules/mkdirp/",\
           "packageDependencies": [\
             ["mkdirp", "npm:1.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["moment", [\
+        ["npm:2.29.3", {\
+          "packageLocation": "./.yarn/cache/moment-npm-2.29.3-fe4ba99bae-2e780e36d9.zip/node_modules/moment/",\
+          "packageDependencies": [\
+            ["moment", "npm:2.29.3"]\
           ],\
           "linkType": "HARD"\
         }]\

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { EDIT_USER } from '../../api/EditUser'
 import { Profile } from './Profile'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { setCurrentUserAC } from '../../redux/authReducer'
+import { GET_CURRENT_USER } from '../../api/GetCurrentUser'
 
 export const ProfileContainer = () => {
   const currentUser = useSelector( state => state.auth.currentUser )
+  const { data } = useQuery(GET_CURRENT_USER)
   const [onEditUser] = useMutation(EDIT_USER)
   const [errorMessage, setErrorMessage] = useState('')
   const [isSaved, setIsSaved] = useState(false)
@@ -31,6 +33,11 @@ export const ProfileContainer = () => {
     }
       )
   }
+
+  useEffect(() => {
+    console.log(data);
+    data && dispatch(setCurrentUserAC(data.currentUser))
+  })
 
   return (
         <Profile currentUser={currentUser} 

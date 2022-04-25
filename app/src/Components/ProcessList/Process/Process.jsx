@@ -7,10 +7,11 @@ import averageActiveTimeSvg from '../../../assets/svg/averageActiveTime.svg'
 import employeesInvolvedProcessSvg from '../../../assets/svg/employeesInvolvedProcess.svg'
 import numberOfScenariosSvg from '../../../assets/svg/numberOfScenarios.svg'
 import { NavLink } from "react-router-dom"
+import moment from 'moment'
+import 'moment/locale/ru'
 
 export const Process = (props) => {
-  const { //id,
-          name,
+  const { name,
           numberOfExecutions,
           averageLeadTime,
           averageActiveTime,
@@ -19,6 +20,23 @@ export const Process = (props) => {
           start,
           end,
           loading} = props.data
+
+  const averageLeadTimeH = moment(averageLeadTime, "X").format('h') > 0 
+                              ? moment(averageLeadTime, "X").format('h')
+                              : ''
+  const averageLeadTimeM = moment(averageLeadTime, "X").format('m') > 0 
+                              ? moment(averageLeadTime, "X").format('m')
+                              : ''
+                                
+  const averageActiveTimeH = moment(averageActiveTime, "X").format('h') > 0 
+                              ? moment(averageActiveTime, "X").format('h')
+                              : ''
+  const averageActiveTimeM = moment(averageActiveTime, "X").format('m') > 0 
+                              ? moment(averageActiveTime, "X").format('m')
+                              : ''
+
+  const averageActiveTimePercentage = ((averageActiveTimeH * 60 + +averageActiveTimeM) / 
+                                        (averageLeadTimeH * 60 + +averageLeadTimeM) * 100).toFixed(1)
 
   return (
     <div className={s.wrapp}>
@@ -36,7 +54,7 @@ export const Process = (props) => {
           <div className={s.item}>
             <img src={numberOfExecutionsSvg} alt="" />
             <div>
-              <div className={s.itemTitle + ' ' + s.itemTitleFirst}>{numberOfExecutions}</div>
+              <div className={s.itemTitle + ' ' + s.itemTitleFirst}>{numberOfExecutions.toLocaleString()}</div>
               <div className={s.itemSubtitle}>выполнено раз</div>
             </div>
           </div>
@@ -45,14 +63,17 @@ export const Process = (props) => {
           <div className={s.item}>
             <img src={averageLeadTimeSvg} alt="" />
             <div>
-              <div className={s.itemTitle}>{averageLeadTime}</div>
+              <div className={s.itemTitle}>{ (averageLeadTimeH && averageLeadTimeH + ' ч ') + 
+                                             (averageLeadTimeM && averageLeadTimeM + ' мин') }</div>
               <div className={s.itemSubtitle}>среднее время выполнения</div>
             </div>
           </div>
           <div className={s.item}>
             <img src={averageActiveTimeSvg} alt="" />
             <div>
-              <div className={s.itemTitle}>{averageActiveTime}</div>
+              <div className={s.itemTitle}>{ (averageActiveTimeH && averageActiveTimeH + ' ч ') + 
+                                             (averageActiveTimeM && averageActiveTimeM + ' мин') + 
+                                             ` (${averageActiveTimePercentage}%)` }</div>
               <div className={s.itemSubtitle}>среднее активное время</div>
             </div>
           </div>
@@ -76,15 +97,15 @@ export const Process = (props) => {
         <div className={s.column + ' ' + s.columnLast}>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Начало</div>
-            <div className={s.date}>{start}</div>
+            <div className={s.date}>{ moment(start, "X").format('LL') }</div>
           </div>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Окончание</div>
-            <div className={s.date}>{end}</div>
+            <div className={s.date}>{ moment(end, "X").format('LL') }</div>
           </div>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Загрузка</div>
-            <div className={s.date}>{loading}</div>
+            <div className={s.date}>{ moment(loading, "X").format('LL') }</div>
           </div>
         </div>
       </div>
