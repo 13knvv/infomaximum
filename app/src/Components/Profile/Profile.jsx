@@ -20,7 +20,7 @@ export const Profile = (props) => {
           <>
             <div>
               <div className={s.header}>
-                <h1>{props.currentUser.firstName + ' ' + props.currentUser.secondName}. Редактирование</h1>
+                <h1>{props.userFirstName + ' ' + props.userSecondName}. Редактирование</h1>
                 <Button type="submit" form="profileFormEdit" disabled={invalid} >
                   {props.isSaved ? 'Сохранено' : 'Сохранить'}
                 </Button>
@@ -30,7 +30,7 @@ export const Profile = (props) => {
 
                   <Field
                     name="firstName"
-                    initialValue={props.currentUser.firstName}
+                    initialValue={props.userFirstName}
                     label="Имя"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}
@@ -39,7 +39,7 @@ export const Profile = (props) => {
 
                   <Field
                     name="secondName"
-                    initialValue={props.currentUser.secondName}
+                    initialValue={props.userSecondName}
                     label="Фамилия"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}
@@ -52,7 +52,7 @@ export const Profile = (props) => {
 
                   <Field
                     name="email"
-                    initialValue={props.currentUser.email}
+                    initialValue={props.userEmail}
                     label="Электронная почта"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}

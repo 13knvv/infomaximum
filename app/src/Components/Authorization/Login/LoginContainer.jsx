@@ -18,8 +18,8 @@ export const LoginContainer = () => {
     .then( response=> {
       setErrorMessage('')
       setToken(response.data.login.token)
-      dispatch(setIsAuthAC(true))
       dispatch(setCurrentUserAC(response.data.login.user))
+      dispatch(setIsAuthAC(true))
     })
     .catch((error)=> {
       setErrorMessage(error.message)

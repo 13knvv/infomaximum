@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import { setIsAuthAC } from '../../../redux/authReducer'
+import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { Register } from './Register'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../../token/token'
 import { REGISTER } from '../../../api/Signup'
-import { GET_CURRENT_USER } from '../../../api/GetCurrentUser'
+import { LOGIN } from '../../../api/Login'
 
 export const RegisterContainer = () => {
   const [onRegister] = useMutation(REGISTER)
-  const { data } = useQuery(GET_CURRENT_USER)
+  const [onLogin] = useMutation(LOGIN)
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
+
   const onSubmitRegister = (dataRegisterForm) => {
-    console.log(data);
     onRegister({ variables: {  firstName: dataRegisterForm.firstName,
                             secondName: dataRegisterForm.secondName,
                             email: dataRegisterForm.email, 
@@ -23,7 +23,18 @@ export const RegisterContainer = () => {
     .then( response => {
       setErrorMessage('')
       setToken(response.data.signup)
+      dispatch(setCurrentUserAC(dataRegisterForm))
       dispatch(setIsAuthAC(true))
+      // onLogin({ email: dataRegisterForm.email, password: dataRegisterForm.password })
+      //   .then( response=> {
+      //     setErrorMessage('')
+      //     dispatch(setCurrentUserAC(response.data.login.user))
+      //     dispatch(setIsAuthAC(true))
+      //   })
+      //   .catch((error)=> {
+      //     setErrorMessage(error.message)
+      //   }
+      //     )
     })
     .catch((error)=> {
       setErrorMessage(error.message)

@@ -3,12 +3,10 @@ const SET_CURRENT_USER = 'SET_CURRENT_USER'
 
 let initialState = {
   isAuth: false,
-  currentUser: {
-    id: null,
-    firstName: null,
-    secondName: null,
-    email: null,
-  }
+  userId:null,
+  userFirstName: null,
+  userSecondName: null,
+  userEmail: null,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -21,7 +19,10 @@ const authReducer = (state = initialState, action) => {
     case SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.currentUser,
+        userId: action.currentUser.id,
+        userFirstName: action.currentUser.firstName,
+        userSecondName: action.currentUser.secondName,
+        userEmail: action.currentUser.email,
       }
 
     default:
@@ -30,6 +31,10 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setIsAuthAC = (bolean) => ({ type: SET_IS_AUTH, bolean })
-export const setCurrentUserAC = (currentUser) => ({ type: SET_CURRENT_USER, currentUser })
+export const setCurrentUserAC = (currentUser) => {
+  console.log('setCurrentUserAC');
+  return ({ type: SET_CURRENT_USER, currentUser })
+}
+
 
 export default authReducer
