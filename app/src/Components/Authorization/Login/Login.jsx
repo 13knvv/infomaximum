@@ -15,7 +15,6 @@ export const Login = (props) => {
 
   return (
     <>
-      {}
       <div className={s.authForm}>
         <Form
           onSubmit={onSubmit}

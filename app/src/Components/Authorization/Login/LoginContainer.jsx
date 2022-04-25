@@ -15,23 +15,22 @@ export const LoginContainer = () => {
 
   const onSubmitLogin = (dataLoginForm) => {
     onLogin({ variables: { email: dataLoginForm.email, password: dataLoginForm.password } })
-    .then( response=> {
-      setErrorMessage('')
-      setToken(response.data.login.token)
-      dispatch(setCurrentUserAC(response.data.login.user))
-      dispatch(setIsAuthAC(true))
-    })
-    .catch((error)=> {
-      setErrorMessage(error.message)
-    }
-      )
+      .then( response=> {
+        setErrorMessage('')
+        setToken(response.data.login.token)
+        dispatch(setCurrentUserAC(response.data.login.user))
+        dispatch(setIsAuthAC(true))
+      })
+      .catch((error)=> {
+        setErrorMessage(error.message)
+      })
   }
 
   return (
      <Login composeValidators={composeValidators} 
-          required={required}
-          tooShort={tooShort}
-          onSubmitLogin={onSubmitLogin}
-          errorMessage={errorMessage} />
+            required={required}
+            tooShort={tooShort}
+            onSubmitLogin={onSubmitLogin}
+            errorMessage={errorMessage} />
   )
 }

@@ -12,11 +12,10 @@ import { setCurrentUserAC, setIsAuthAC } from './redux/authReducer'
 
 const App = () => {
   const isAuth = useSelector( state => state.auth.isAuth)
-  const { data, loading, error } = useQuery(GET_CURRENT_USER)
+  const { data, loading } = useQuery(GET_CURRENT_USER)
   const dispatch = useDispatch() 
 
   useEffect(() => {
-    console.log('app');
     if (data) {
       dispatch(setIsAuthAC(true))
       dispatch(setCurrentUserAC(data.currentUser))
@@ -24,8 +23,7 @@ const App = () => {
   }, [data])
 
 
-  return (
-    <>
+  return <>
       {
       !isAuth  
           ? ( loading ? null : <Authorization /> ) 
@@ -45,7 +43,6 @@ const App = () => {
         </div>
       )}
     </>
-  )
 }
 
 export default App
