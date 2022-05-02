@@ -9,8 +9,13 @@ import numberOfScenariosSvg from '../../../assets/svg/numberOfScenarios.svg'
 import { NavLink } from "react-router-dom"
 import moment from 'moment'
 import 'moment/locale/ru'
+import { ProcessType } from '../ProcessList'
 
-export const Process = (props) => {
+type ProcessPropsType = {
+  data: ProcessType
+}
+
+export const Process = (props: ProcessPropsType) => {
   const { name,
           numberOfExecutions,
           averageLeadTime,
@@ -21,22 +26,22 @@ export const Process = (props) => {
           end,
           loading} = props.data
 
-  const averageLeadTimeH = moment(averageLeadTime, "X").format('h') > 0 
-                              ? moment(averageLeadTime, "X").format('h')
+  const averageLeadTimeH = +moment(+averageLeadTime, "X").format('h') > 0 
+                              ? moment(+averageLeadTime, "X").format('h')
                               : ''
-  const averageLeadTimeM = moment(averageLeadTime, "X").format('m') > 0 
-                              ? moment(averageLeadTime, "X").format('m')
+  const averageLeadTimeM = +moment(+averageLeadTime, "X").format('m') > 0 
+                              ? moment(+averageLeadTime, "X").format('m')
                               : ''
                                 
-  const averageActiveTimeH = moment(averageActiveTime, "X").format('h') > 0 
-                              ? moment(averageActiveTime, "X").format('h')
+  const averageActiveTimeH = +moment(+averageActiveTime, "X").format('h') > 0 
+                              ? moment(+averageActiveTime, "X").format('h')
                               : ''
-  const averageActiveTimeM = moment(averageActiveTime, "X").format('m') > 0 
-                              ? moment(averageActiveTime, "X").format('m')
+  const averageActiveTimeM = +moment(+averageActiveTime, "X").format('m') > 0 
+                              ? moment(+averageActiveTime, "X").format('m')
                               : ''
 
-  const averageActiveTimePercentage = ((averageActiveTimeH * 60 + +averageActiveTimeM) / 
-                                        (averageLeadTimeH * 60 + +averageLeadTimeM) * 100).toFixed(1)
+  const averageActiveTimePercentage = ((+averageActiveTimeH * 60 + +averageActiveTimeM) / 
+                                        (+averageLeadTimeH * 60 + +averageLeadTimeM) * 100).toFixed(1)
 
   return (
     <div className={s.wrapp}>
@@ -97,15 +102,15 @@ export const Process = (props) => {
         <div className={s.column + ' ' + s.columnLast}>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Начало</div>
-            <div className={s.date}>{ moment(start, "X").format('LL') }</div>
+            <div className={s.date}>{ moment(+start, "X").format('LL') }</div>
           </div>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Окончание</div>
-            <div className={s.date}>{ moment(end, "X").format('LL') }</div>
+            <div className={s.date}>{ moment(+end, "X").format('LL') }</div>
           </div>
           <div className={s.item}>
             <div className={s.itemSubtitle + ' ' + s.itemSubtitleLast}>Загрузка</div>
-            <div className={s.date}>{ moment(loading, "X").format('LL') }</div>
+            <div className={s.date}>{ moment(+loading, "X").format('LL') }</div>
           </div>
         </div>
       </div>

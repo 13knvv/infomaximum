@@ -11,7 +11,7 @@ import { ProfileContainer } from './Components/Profile/ProfileContainer'
 import { setCurrentUserAC, setIsAuthAC } from './redux/authReducer'
 
 const App = () => {
-  const isAuth = useSelector( state => state.auth.isAuth)
+  const isAuth = useSelector<any, boolean>( state => state.auth.isAuth)
   const { data, loading } = useQuery(GET_CURRENT_USER)
   const dispatch = useDispatch() 
 

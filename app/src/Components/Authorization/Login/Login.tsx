@@ -5,11 +5,18 @@ import errorSvg from './../../../assets/svg/errorSvg.svg'
 import { Form, Field } from 'react-final-form'
 import { ButtonAuth } from '../../common/Button/Button'
 import { InputPasswordAuthorization, InputTextAuthorization } from '../../common/Inputs/Inputs'
+import { DataLoginFormType } from './LoginContainer'
 
+type LoginPropsType = {
+  composeValidators: any
+  required: (value: string) => undefined | string
+  tooShort: (item: string, number: number, oeay: string) => (value: string) => undefined | string
+  onSubmitLogin: (dataLoginForm: DataLoginFormType) => void
+  errorMessage: string
+}
+export const Login = (props: LoginPropsType) => {
 
-export const Login = (props) => {
-
-  const onSubmit = (dataLoginForm) => {
+  const onSubmit = (dataLoginForm: DataLoginFormType) => {
      props.onSubmitLogin(dataLoginForm)
   }
 

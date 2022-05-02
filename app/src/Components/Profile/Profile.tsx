@@ -4,10 +4,19 @@ import { Form, Field } from 'react-final-form'
 import { InputPasswordProfileEdit, InputTextProfileEdit } from '../common/Inputs/Inputs'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../common/Inputs/validates'
 import Button from '../common/Button/Button'
+import { NewDataUserType } from './ProfileContainer'
+import { UserType } from '../../redux/authReducer'
 
-export const Profile = (props) => {
+type ProfilePropsType = {
+  user: UserType
+  onSubmitEditUser: (newDataUser:  NewDataUserType) => void
+  errorMessage: string
+  isSaved: boolean
+}
 
-  const onSubmit = (newDataUser) => {
+export const Profile = (props: ProfilePropsType) => {
+
+  const onSubmit = (newDataUser: NewDataUserType) => {
     props.onSubmitEditUser(newDataUser)
   }
 

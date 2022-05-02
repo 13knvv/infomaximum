@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import s from './Inputs.module.css'
+import { FieldRenderProps } from "react-final-form"
 
-export const InputTextProfileEdit = ({ input, meta, ...props }) => {
+type InputPropsType = FieldRenderProps<string, any>
+
+export const InputTextProfileEdit = ({ input, meta, ...props}: InputPropsType) => {
   return (
     <div className={s.inputProfileEditWrapp}>
       <label>{props.label}</label>
@@ -21,7 +24,7 @@ export const InputTextProfileEdit = ({ input, meta, ...props }) => {
   )
 }
 
-export const InputTextAuthorization = ({ input, meta, ...props }) => {
+export const InputTextAuthorization = ({ input, meta, ...props }: InputPropsType) => {
   return (
     <div className={s.inputAuthWrapp}>
       <span className={s.inputInner}>
@@ -40,7 +43,7 @@ export const InputTextAuthorization = ({ input, meta, ...props }) => {
   )
 }
 
-export const InputPasswordProfileEdit = ({ input, meta, ...props }) => {
+export const InputPasswordProfileEdit = ({ input, meta, ...props }: InputPropsType) => {
   const [isViewPassword, setIsViewPassword] = useState(false)
 
   return (
@@ -70,7 +73,7 @@ export const InputPasswordProfileEdit = ({ input, meta, ...props }) => {
     </div>
   )
 }
-export const InputPasswordAuthorization = ({ input, meta, ...props }) => {
+export const InputPasswordAuthorization = ({ input, meta, ...props }: InputPropsType) => {
   const [isViewPassword, setIsViewPassword] = useState(false)
 
   return (

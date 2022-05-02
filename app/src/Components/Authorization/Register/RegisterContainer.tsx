@@ -7,13 +7,20 @@ import { useDispatch } from 'react-redux'
 import { setToken } from '../../../token/token'
 import { REGISTER } from '../../../api/Signup'
 
+export type DataRegisterFormType = {
+  firstName: string
+  secondName: string
+  email: string 
+  password: string
+}
+
 export const RegisterContainer = () => {
   const [onRegister] = useMutation(REGISTER)
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
 
-  const onSubmitRegister = (dataRegisterForm) => {
+  const onSubmitRegister = (dataRegisterForm: DataRegisterFormType): void => {
     onRegister({ variables: {  firstName: dataRegisterForm.firstName,
                                secondName: dataRegisterForm.secondName,
                                email: dataRegisterForm.email, 

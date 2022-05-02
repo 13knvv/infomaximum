@@ -5,8 +5,9 @@ import menuIconWhite from '../../../assets/svg/menuIconWhite.svg'
 import user from '../../../assets/svg/user.svg'
 import procListIcon from '../../../assets/svg/procListIcon.svg'
 import { NavLink } from 'react-router-dom'
+import { HeaderPropsType } from '../Header'
 
-export const Navbar = (props) => {
+export const Navbar = (props: HeaderPropsType) => {
   return (
     <>
       <div

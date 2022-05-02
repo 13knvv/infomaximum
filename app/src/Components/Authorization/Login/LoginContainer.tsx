@@ -6,14 +6,19 @@ import { useMutation } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { setToken } from '../../../token/token'
+import { DataRegisterFormType } from '../Register/RegisterContainer'
 
+export type DataLoginFormType = {
+  email: string
+  password: string
+}
 
 export const LoginContainer = () => {
   const [onLogin] = useMutation(LOGIN)
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
-  const onSubmitLogin = (dataLoginForm) => {
+  const onSubmitLogin = (dataLoginForm: DataLoginFormType) => {
     onLogin({ variables: { email: dataLoginForm.email, password: dataLoginForm.password } })
       .then( response=> {
         setErrorMessage('')

@@ -3,18 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { EDIT_USER } from '../../api/EditUser'
 import { Profile } from './Profile'
 import { useMutation, useQuery } from '@apollo/client'
-import { setCurrentUserAC } from '../../redux/authReducer'
+import { setCurrentUserAC, UserType } from '../../redux/authReducer'
 import { GET_CURRENT_USER } from '../../api/GetCurrentUser'
 
+export type NewDataUserType = {
+  id: string
+  firstName: string
+  secondName: string
+  email: string
+  password: string
+}
+
 export const ProfileContainer = () => {
-  const user = useSelector( state => state.auth.user)
+  const user = useSelector<any, UserType>( state => state.auth.user)
   const { data } = useQuery(GET_CURRENT_USER)
   const [onEditUser] = useMutation(EDIT_USER)
   const [errorMessage, setErrorMessage] = useState('')
   const [isSaved, setIsSaved] = useState(false)
   const dispatch = useDispatch()
 
-  const onSubmitEditUser = (newDataUser) => {
+  const onSubmitEditUser = (newDataUser:  NewDataUserType) => {
     onEditUser({ variables: { id: data.currentUser.id,
                               firstName: newDataUser.firstName,
                               secondName: newDataUser.secondName,
@@ -34,7 +42,7 @@ export const ProfileContainer = () => {
  
 
   return <Profile user={user} 
-                 onSubmitEditUser={onSubmitEditUser}
-                 errorMessage={errorMessage}
-                 isSaved={isSaved} />
+                  onSubmitEditUser={onSubmitEditUser}
+                  errorMessage={errorMessage}
+                  isSaved={isSaved} />
 }

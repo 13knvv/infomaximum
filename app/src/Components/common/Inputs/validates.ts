@@ -1,5 +1,5 @@
-export const validate = (values) => {
-  const errors = {}
+export const validate = (values: any) => {
+  const errors: any = {}
   if (values.passwordRepeat !== values.password) {
     errors.passwordRepeat = 'Пароли должны совпадать'
   }
@@ -7,19 +7,19 @@ export const validate = (values) => {
 }
 
 export const composeValidators =
-  (...validators) =>
-  (value) => {
+  (...validators: any[]) =>
+  (value: string) => {
     return validators.reduce(
       (error, validator) => error || validator(value),
       undefined
     )
 }
   
-export const required = (value) => {
+export const required = (value: string) => {
   return value ? undefined : 'Произошла ошибка. Поле должно бть заполнено'
 }
 
-export const mustBeLetter = (value) => {
+export const mustBeLetter = (value: string) => {
   let isValidate = true
   value.split('').forEach((item) => {
     if (!(/^[a-zA-Zа-яА-Я]/.test(item))) {
@@ -32,7 +32,7 @@ export const mustBeLetter = (value) => {
             : undefined
 }
 
-export const tooShort = (item, number, oeay) => (value) => {
+export const tooShort = (item: string, number: number, oeay: string) => (value: string) => {
   return value.length < number
     ? `Произошла ошибка. ${item} слишком коротк${oeay}`
     : undefined

@@ -5,9 +5,20 @@ import errorSvg from './../../../assets/svg/errorSvg.svg'
 import { Form, Field } from 'react-final-form'
 import { InputPasswordAuthorization, InputTextAuthorization } from '../../common/Inputs/Inputs'
 import { ButtonAuth } from '../../common/Button/Button'
+import { DataRegisterFormType } from './RegisterContainer'
 
-export const Register = (props) => {
-  const onSubmit = (dataRegisterForm) => {
+type RegisterPropsType = {
+  onSubmitRegister: (dataRegisterForm: DataRegisterFormType) => void
+  composeValidators: any
+  mustBeLetter: (value: string) => undefined | string
+  required: (value: string) => undefined | string
+  tooShort: (item: string, number: number, oeay: string) => (value: string) => undefined | string
+  validate: (value: any) => any
+  errorMessage: string
+}
+
+export const Register = (props: RegisterPropsType) => {
+  const onSubmit = (dataRegisterForm: DataRegisterFormType) => {
     props.onSubmitRegister(dataRegisterForm)
   }
 

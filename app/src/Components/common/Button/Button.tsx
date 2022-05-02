@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Button.module.css'
 
-const Button = (props) => {
+const Button = (props: any) => {
     return (
         <button className={s.button} {...props}>
             {props.children}
@@ -9,7 +9,7 @@ const Button = (props) => {
     )
 }
 
-export const ButtonAuth = (props) => {
+export const ButtonAuth = (props: any) => {
     return (
         <button className={s.button + ' ' + s.buttonAuth} {...props}>
             {props.children}
