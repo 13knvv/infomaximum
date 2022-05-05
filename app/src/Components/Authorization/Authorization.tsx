@@ -6,7 +6,6 @@ import { Route, Routes } from 'react-router-dom'
 import { LoginContainer } from './Login/LoginContainer'
 
 export const Authorization = () => {
-  
   return (
     <div className={s.wrapp}>
       <div className={s.logo}>

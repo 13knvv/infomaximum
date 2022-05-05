@@ -1,13 +1,13 @@
 import React from 'react'
 import s from './Button.module.css'
 
-const Button = (props: any) => {
+const Button = React.memo((props: any) => {
     return (
         <button className={s.button} {...props}>
             {props.children}
         </button>
     )
-}
+})
 
 export const ButtonAuth = (props: any) => {
     return (
