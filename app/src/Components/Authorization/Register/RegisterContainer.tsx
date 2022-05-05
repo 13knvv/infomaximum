@@ -17,7 +17,7 @@ export type DataRegisterFormType = {
 
 export const RegisterContainer = () => {
   const [onRegister] = useMutation(REGISTER)
-  const {data: currentUser, refetch: refetchCurrentUser} = useQuery(GET_CURRENT_USER)
+  const {data, refetch: refetchCurrentUser} = useQuery(GET_CURRENT_USER)
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
@@ -33,7 +33,7 @@ export const RegisterContainer = () => {
       setErrorMessage('')
       setToken(response.data.signup)
       await refetchCurrentUser() 
-      dispatch(setCurrentUserAC(currentUser))
+      dispatch(setCurrentUserAC(data.currentUser))
       dispatch(setIsAuthAC(true))
 
     } catch(error: any) {

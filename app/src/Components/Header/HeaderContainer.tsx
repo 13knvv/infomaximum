@@ -9,7 +9,6 @@ export const HeaderContainer = () => {
   const dispatch = useDispatch()
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false)
   const userName = useSelector<any, string>( state => state.auth.user.firstName)
-  
 
   useEffect(() => {
     isOpenNav
