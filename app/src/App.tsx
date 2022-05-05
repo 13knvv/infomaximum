@@ -29,7 +29,6 @@ const App = () => {
           ? ( loading ? null : <Authorization /> ) 
           : (
         <div>
-          
           <HeaderContainer />
           <div className="container">
             <Routes>

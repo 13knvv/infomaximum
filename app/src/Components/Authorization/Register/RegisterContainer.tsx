@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { Register } from './Register'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../../token/token'
 import { REGISTER } from '../../../api/Signup'
+import { GET_CURRENT_USER } from '../../../api/GetCurrentUser'
 
 export type DataRegisterFormType = {
   firstName: string
@@ -16,29 +17,29 @@ export type DataRegisterFormType = {
 
 export const RegisterContainer = () => {
   const [onRegister] = useMutation(REGISTER)
+  const {data: currentUser, refetch: refetchCurrentUser} = useQuery(GET_CURRENT_USER)
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
 
-  const onSubmitRegister = (dataRegisterForm: DataRegisterFormType): void => {
-    onRegister({ variables: {  firstName: dataRegisterForm.firstName,
+  const onSubmitRegister = async (dataRegisterForm: DataRegisterFormType): Promise<void> => {
+    try {
+      const response = await onRegister({ variables: {  firstName: dataRegisterForm.firstName,
                                secondName: dataRegisterForm.secondName,
                                email: dataRegisterForm.email, 
                                password: dataRegisterForm.password } 
-    })
-    .then( response => {
+                              })
+
       setErrorMessage('')
       setToken(response.data.signup)
+      await refetchCurrentUser() 
+      dispatch(setCurrentUserAC(currentUser))
       dispatch(setIsAuthAC(true))
-      dispatch(setCurrentUserAC( { firstName: dataRegisterForm.firstName,
-                                   secondName: dataRegisterForm.secondName,
-                                   email: dataRegisterForm.email } ))
-      
-    })
-    .catch((error)=> {
+
+    } catch(error: any) {
       setErrorMessage(error.message)
     }
-      )
+  
   }
 
   return <>
