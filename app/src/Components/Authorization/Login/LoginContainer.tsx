@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { composeValidators, required, tooShort } from '../../common/Inputs/validates'
 import { Login } from './Login'
 import { LOGIN } from '../../../api/Login'
@@ -18,7 +18,7 @@ export const LoginContainer = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
 
-  const onSubmitLogin = (dataLoginForm: DataLoginFormType) => {
+  const onSubmitLogin = useCallback((dataLoginForm: DataLoginFormType) => {
     onLogin({ variables: { email: dataLoginForm.email, password: dataLoginForm.password } })
       .then( response=> {
         setErrorMessage('')
@@ -29,7 +29,7 @@ export const LoginContainer = () => {
       .catch((error)=> {
         setErrorMessage(error.message)
       })
-  }
+  }, [])
 
   return (
      <Login composeValidators={composeValidators} 

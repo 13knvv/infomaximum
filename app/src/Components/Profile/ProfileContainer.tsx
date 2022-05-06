@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { EDIT_USER } from '../../api/EditUser'
 import { Profile } from './Profile'
@@ -20,7 +20,7 @@ export const ProfileContainer = () => {
   const [isSaved, setIsSaved] = useState(false)
   const dispatch = useDispatch()
 
-  const onSubmitEditUser = (newDataUser:  NewDataUserType) => {
+  const onSubmitEditUser = useCallback((newDataUser:  NewDataUserType) => {
     onEditUser({ variables: { id: user.id,
                               firstName: newDataUser.firstName,
                               secondName: newDataUser.secondName,
@@ -36,7 +36,7 @@ export const ProfileContainer = () => {
       .catch((error)=> {
         setErrorMessage(error.message)
       })
-  }
+  }, [])
  
 
   return <Profile user={user} 

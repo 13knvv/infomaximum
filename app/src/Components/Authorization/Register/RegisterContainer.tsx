@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { Register } from './Register'
@@ -22,7 +22,7 @@ export const RegisterContainer = () => {
   const dispatch = useDispatch()
 
 
-  const onSubmitRegister = async (dataRegisterForm: DataRegisterFormType): Promise<void> => {
+  const onSubmitRegister = useCallback( async (dataRegisterForm: DataRegisterFormType): Promise<void> => {
     try {
       const response = await onRegister({ variables: {  firstName: dataRegisterForm.firstName,
                                secondName: dataRegisterForm.secondName,
@@ -40,7 +40,7 @@ export const RegisterContainer = () => {
       setErrorMessage(error.message)
     }
   
-  }
+  }, [])
 
   return <>
       <Register onSubmitRegister={onSubmitRegister}

@@ -14,7 +14,7 @@ type ProfilePropsType = {
   isSaved: boolean
 }
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = React.memo((props: ProfilePropsType) => {
 
   const onSubmit = (newDataUser: NewDataUserType) => {
     props.onSubmitEditUser(newDataUser)
@@ -94,4 +94,4 @@ export const Profile = (props: ProfilePropsType) => {
       />
     </>
   )
-}
+})

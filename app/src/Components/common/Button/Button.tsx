@@ -9,13 +9,13 @@ const Button = React.memo((props: any) => {
     )
 })
 
-export const ButtonAuth = (props: any) => {
+export const ButtonAuth = React.memo((props: any) => {
     return (
         <button className={s.button + ' ' + s.buttonAuth} {...props}>
             {props.children}
         </button>
     )
-}
+})
 
 
 export default Button
