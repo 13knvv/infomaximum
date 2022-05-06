@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsAuthAC } from '../../redux/authReducer'
 import { removeToken } from '../../token/token'
 import { Header } from './Header'
 
-export const HeaderContainer = () => {
+export const HeaderContainer = React.memo(() => {
   const dispatch = useDispatch()
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false)
   const userName = useSelector<any, string>( state => state.auth.user.firstName)
@@ -16,11 +16,11 @@ export const HeaderContainer = () => {
       : document.body.classList.remove('body_noScrooll')
   }, [isOpenNav])
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     removeToken()
     dispatch(setIsAuthAC(false))
     setIsOpenNav(false)
-  }
+  }, [])
 
   return (
     <Header setIsOpenNav={setIsOpenNav} 
@@ -28,4 +28,4 @@ export const HeaderContainer = () => {
             onLogout={onLogout} 
             userName={userName} />
   )
-}
+})

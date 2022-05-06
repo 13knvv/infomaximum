@@ -14,7 +14,7 @@ type LoginPropsType = {
   onSubmitLogin: (dataLoginForm: DataLoginFormType) => void
   errorMessage: string
 }
-export const Login = (props: LoginPropsType) => {
+export const Login = React.memo((props: LoginPropsType) => {
 
   const onSubmit = (dataLoginForm: DataLoginFormType) => {
      props.onSubmitLogin(dataLoginForm)
@@ -68,4 +68,4 @@ export const Login = (props: LoginPropsType) => {
       </div>}
     </>
   )
-}
+})

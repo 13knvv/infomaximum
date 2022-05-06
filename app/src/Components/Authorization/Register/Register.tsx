@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import s from '../Authorization.module.css'
 import errorSvg from './../../../assets/svg/errorSvg.svg'
@@ -17,7 +17,7 @@ type RegisterPropsType = {
   errorMessage: string
 }
 
-export const Register = (props: RegisterPropsType) => {
+export const Register = React.memo((props: RegisterPropsType) => {
   const onSubmit = (dataRegisterForm: DataRegisterFormType) => {
     props.onSubmitRegister(dataRegisterForm)
   }
@@ -103,4 +103,4 @@ export const Register = (props: RegisterPropsType) => {
       </div>}
     </>
   )
-}
+})
