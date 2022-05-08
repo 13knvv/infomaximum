@@ -46,6 +46,10 @@ export const InputTextAuthorization = ({ input, meta, ...props }: InputPropsType
 export const InputPasswordProfileEdit = ({ input, meta, ...props }: InputPropsType) => {
   const [isViewPassword, setIsViewPassword] = useState(false)
 
+  const onClickPasswordControl = () => {
+    setIsViewPassword(!isViewPassword)
+  }
+
   return (
     <div className={s.inputProfileEditWrapp}>
       <label>{props.label}</label>
@@ -59,7 +63,7 @@ export const InputPasswordProfileEdit = ({ input, meta, ...props }: InputPropsTy
           placeholder={props.placeholder}
         />
         <span
-          onClick={() => setIsViewPassword(!isViewPassword)}
+          onClick={onClickPasswordControl}
           className={
             s.passwordControl +
             ' ' +
@@ -76,6 +80,10 @@ export const InputPasswordProfileEdit = ({ input, meta, ...props }: InputPropsTy
 export const InputPasswordAuthorization = ({ input, meta, ...props }: InputPropsType) => {
   const [isViewPassword, setIsViewPassword] = useState(false)
 
+  const onClickPasswordControl = () => {
+    setIsViewPassword(!isViewPassword)
+  }
+
   return (
     <div className={s.inputAuthWrapp}>
       <span className={s.inputInner}>
@@ -88,7 +96,7 @@ export const InputPasswordAuthorization = ({ input, meta, ...props }: InputProps
           placeholder={props.placeholder}
         />
         <span
-          onClick={() => setIsViewPassword(!isViewPassword)}
+          onClick={onClickPasswordControl}
           className={
             s.passwordControl +
             ' ' +

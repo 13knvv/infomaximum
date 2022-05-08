@@ -11,9 +11,14 @@ export type HeaderPropsType = {
 }
 
 export const Header = (props: HeaderPropsType) => {
+
+  const onClickMenuButton = () => {
+    props.setIsOpenNav(true)
+  }
+
   return (
     <header className={s.wrapp}>
-      <div className={s.menuButton} onClick={() => props.setIsOpenNav(true)}>
+      <div className={s.menuButton} onClick={onClickMenuButton}>
         <div className={s.iconMenu}>
           <img src={iconMenuButton} alt="" />
         </div>
