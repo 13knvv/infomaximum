@@ -5,16 +5,17 @@ import { InputPasswordProfileEdit, InputTextProfileEdit } from '../common/Inputs
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../common/Inputs/validates'
 import Button from '../common/Button/Button'
 import { NewDataUserType } from './ProfileContainer'
-import { UserType } from '../../redux/authReducer'
+import { AuthStoreType } from '../../MobX/authStore'
 
 type ProfilePropsType = {
-  user: UserType
+  authStore: AuthStoreType
   onSubmitEditUser: (newDataUser:  NewDataUserType) => void
   errorMessage: string
   isSaved: boolean
 }
 
 export const Profile = React.memo((props: ProfilePropsType) => {
+  const { firstName, secondName, email } = props.authStore.user
 
   const onSubmit = (newDataUser: NewDataUserType) => {
     props.onSubmitEditUser(newDataUser)
@@ -29,7 +30,7 @@ export const Profile = React.memo((props: ProfilePropsType) => {
           <>
             <div>
               <div className={s.header}>
-                <h1>{props.user.firstName + ' ' + props.user.secondName}. Редактирование</h1>
+                <h1>{firstName + ' ' + secondName}. Редактирование</h1>
                 <Button type="submit" form="profileFormEdit" disabled={invalid} >
                   {props.isSaved ? 'Сохранено' : 'Сохранить'}
                 </Button>
@@ -39,7 +40,7 @@ export const Profile = React.memo((props: ProfilePropsType) => {
 
                   <Field
                     name="firstName"
-                    initialValue={props.user.firstName}
+                    initialValue={firstName}
                     label="Имя"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}
@@ -48,7 +49,7 @@ export const Profile = React.memo((props: ProfilePropsType) => {
 
                   <Field
                     name="secondName"
-                    initialValue={props.user.secondName}
+                    initialValue={secondName}
                     label="Фамилия"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}
@@ -61,7 +62,7 @@ export const Profile = React.memo((props: ProfilePropsType) => {
 
                   <Field
                     name="email"
-                    initialValue={props.user.email}
+                    initialValue={email}
                     label="Электронная почта"
                     placeholder="Не задано"
                     component={InputTextProfileEdit}

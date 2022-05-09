@@ -16,6 +16,8 @@
     "@types/redux": "^3.6.0",
     "final-form": "^4.20.7",
     "graphql": "^16.4.0",
+    "mobx": "^6.5.0",
+    "mobx-react-lite": "^3.4.0",
     "moment": "^2.29.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

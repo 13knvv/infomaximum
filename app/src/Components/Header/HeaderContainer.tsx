@@ -1,14 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import { useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setIsAuthAC } from '../../redux/authReducer'
+import { useStores } from '../../MobX/stores'
 import { removeToken } from '../../token/token'
 import { Header } from './Header'
 
 export const HeaderContainer = React.memo(() => {
-  const dispatch = useDispatch()
+  const { authStore } = useStores()
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false)
-  const userName = useSelector<any, string>( state => state.auth.user.firstName)
 
   useEffect(() => {
     isOpenNav
@@ -18,7 +16,7 @@ export const HeaderContainer = React.memo(() => {
 
   const onLogout = useCallback(() => {
     removeToken()
-    dispatch(setIsAuthAC(false))
+    authStore.setIsAuth(false)
     setIsOpenNav(false)
   }, [])
 
@@ -26,6 +24,6 @@ export const HeaderContainer = React.memo(() => {
     <Header setIsOpenNav={setIsOpenNav} 
             isOpenNav={isOpenNav} 
             onLogout={onLogout} 
-            userName={userName} />
+            authStore={authStore} />
   )
 })

@@ -3,10 +3,8 @@ import { composeValidators, required, tooShort } from '../../common/Inputs/valid
 import { Login } from './Login'
 import { LOGIN } from '../../../api/Login'
 import { useMutation } from '@apollo/client'
-import { useDispatch } from 'react-redux'
-import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { setToken } from '../../../token/token'
-import { DataRegisterFormType } from '../Register/RegisterContainer'
+import { useStores } from '../../../MobX/stores'
 
 export type DataLoginFormType = {
   email: string
@@ -14,17 +12,17 @@ export type DataLoginFormType = {
 }
 
 export const LoginContainer = () => {
+  const {authStore} = useStores()
   const [onLogin] = useMutation(LOGIN)
   const [errorMessage, setErrorMessage] = useState('')
-  const dispatch = useDispatch()
 
   const onSubmitLogin = useCallback((dataLoginForm: DataLoginFormType) => {
     onLogin({ variables: { email: dataLoginForm.email, password: dataLoginForm.password } })
       .then( response=> {
         setErrorMessage('')
         setToken(response.data.login.token)
-        dispatch(setCurrentUserAC(response.data.login.user))
-        dispatch(setIsAuthAC(true))
+        authStore.setCurrentUser(response.data.login.user)
+        authStore.setIsAuth(true)
       })
       .catch((error)=> {
         setErrorMessage(error.message)

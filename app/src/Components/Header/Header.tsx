@@ -2,12 +2,13 @@ import React from 'react'
 import s from './Header.module.css'
 import iconMenuButton from '../../assets/svg/menu.svg'
 import { Navbar } from './Navbar/Navbar'
+import { AuthStoreType } from '../../MobX/authStore'
 
 export type HeaderPropsType = {
   setIsOpenNav: React.Dispatch<React.SetStateAction<boolean>>
   isOpenNav: boolean
   onLogout: () => void
-  userName: string
+  authStore: AuthStoreType
 }
 
 export const Header = (props: HeaderPropsType) => {
@@ -28,7 +29,7 @@ export const Header = (props: HeaderPropsType) => {
         isOpenNav={props.isOpenNav}
         setIsOpenNav={props.setIsOpenNav}
         onLogout={props.onLogout}
-        userName={props.userName}
+        authStore={props.authStore}
       />
     </header>
   )
