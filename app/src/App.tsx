@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes, Navigate} from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_CURRENT_USER } from './api/GetCurrentUser'
@@ -8,18 +7,18 @@ import { Authorization } from './Components/Authorization/Authorization'
 import { HeaderContainer } from './Components/Header/HeaderContainer'
 import { ProcessListContainer } from './Components/ProcessList/ProcessListContainer'
 import { ProfileContainer } from './Components/Profile/ProfileContainer'
-import { setCurrentUserAC, setIsAuthAC } from './redux/authReducer'
+import { useStores } from './MobX/stores'
+import { observer } from 'mobx-react-lite'
 
 const App = () => {
-  const isAuth = useSelector<any, boolean>( state => state.auth.isAuth)
+  const { authStore } = useStores()
   const { data, loading } = useQuery(GET_CURRENT_USER)
-  const dispatch = useDispatch() 
   const [isInitSuccess, setIsInitSuccess] = useState<boolean>(false)
 
   useEffect(() => {
     if (data) {
-      dispatch(setIsAuthAC(true))
-      dispatch(setCurrentUserAC(data.currentUser))
+      authStore.setIsAuth(true)
+      authStore.setCurrentUser(data.currentUser)
     }
   }, [data])
 
@@ -30,7 +29,7 @@ const App = () => {
   }, [loading])
 
   if (!isInitSuccess) return <div>Инициализация приложения</div>
-  if (!isAuth) return <Authorization />
+  if (!authStore.isAuth) return <Authorization />
     return <>
               <div>
                 <HeaderContainer />
@@ -47,4 +46,4 @@ const App = () => {
           </>
 }
 
-export default App
+export default observer(App)

@@ -2,12 +2,13 @@ import React, { useCallback } from 'react'
 import s from './Navbar.module.css'
 import proceset from '../../../assets/svg/proceset.svg'
 import menuIconWhite from '../../../assets/svg/menuIconWhite.svg'
-import user from '../../../assets/svg/user.svg'
+import userSvg from '../../../assets/svg/userSvg.svg'
 import procListIcon from '../../../assets/svg/procListIcon.svg'
 import { NavLink } from 'react-router-dom'
 import { HeaderPropsType } from '../Header'
 
 export const Navbar = (props: HeaderPropsType) => {
+  const { user } = props.authStore
 
   const closeNavBar = useCallback(() => {
     props.setIsOpenNav(false)
@@ -32,9 +33,9 @@ export const Navbar = (props: HeaderPropsType) => {
           <NavLink to="profile" onClick={closeNavBar}>
             <li className={s.item}>
               <div className={s.iconItem}>
-                <img src={user} alt="" />
+                <img src={userSvg} alt="" />
               </div>
-              <div className={s.titleItem}>{props.userName}</div>
+              <div className={s.titleItem}>{user.firstName}</div>
             </li> 
           </NavLink>
           <NavLink to="/process-lists" onClick={closeNavBar}>

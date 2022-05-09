@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { EDIT_USER } from '../../api/EditUser'
 import { Profile } from './Profile'
 import { useMutation } from '@apollo/client'
-import { setCurrentUserAC, UserType } from '../../redux/authReducer'
+import { useStores } from '../../MobX/stores'
 
 export type NewDataUserType = {
   id: string
@@ -14,14 +14,13 @@ export type NewDataUserType = {
 }
 
 export const ProfileContainer = () => {
-  const user = useSelector<any, UserType>( state => state.auth.user)
+  const { authStore } = useStores()
   const [onEditUser] = useMutation(EDIT_USER)
   const [errorMessage, setErrorMessage] = useState('')
   const [isSaved, setIsSaved] = useState(false)
-  const dispatch = useDispatch()
 
   const onSubmitEditUser = useCallback((newDataUser:  NewDataUserType) => {
-    onEditUser({ variables: { id: user.id,
+    onEditUser({ variables: { id: authStore.user.id,
                               firstName: newDataUser.firstName,
                               secondName: newDataUser.secondName,
                               email: newDataUser.email, 
@@ -29,7 +28,7 @@ export const ProfileContainer = () => {
     })
       .then( response => {
         setErrorMessage('')
-        dispatch(setCurrentUserAC(response.data.editUser))
+        authStore.setCurrentUser(response.data.editUser)
         setIsSaved(true)
         setTimeout(() => setIsSaved(false), 3000)
       })
@@ -39,7 +38,7 @@ export const ProfileContainer = () => {
   }, [])
  
 
-  return <Profile user={user} 
+  return <Profile authStore={authStore} 
                   onSubmitEditUser={onSubmitEditUser}
                   errorMessage={errorMessage}
                   isSaved={isSaved} />

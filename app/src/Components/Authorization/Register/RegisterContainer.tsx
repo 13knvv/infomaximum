@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react'
-import { setCurrentUserAC, setIsAuthAC } from '../../../redux/authReducer'
 import { composeValidators, mustBeLetter, required, tooShort, validate } from '../../common/Inputs/validates'
 import { Register } from './Register'
 import { useMutation, useQuery } from '@apollo/client'
-import { useDispatch } from 'react-redux'
 import { setToken } from '../../../token/token'
 import { REGISTER } from '../../../api/Signup'
 import { GET_CURRENT_USER } from '../../../api/GetCurrentUser'
+import { useStores } from '../../../MobX/stores'
 
 export type DataRegisterFormType = {
   firstName: string
@@ -16,10 +15,10 @@ export type DataRegisterFormType = {
 }
 
 export const RegisterContainer = () => {
+  const { authStore } = useStores()
   const [onRegister] = useMutation(REGISTER)
   const {data, refetch: refetchCurrentUser} = useQuery(GET_CURRENT_USER)
   const [errorMessage, setErrorMessage] = useState('')
-  const dispatch = useDispatch()
 
 
   const onSubmitRegister = useCallback( async (dataRegisterForm: DataRegisterFormType): Promise<void> => {
@@ -33,8 +32,8 @@ export const RegisterContainer = () => {
       setErrorMessage('')
       setToken(response.data.signup)
       await refetchCurrentUser() 
-      dispatch(setCurrentUserAC(data.currentUser))
-      dispatch(setIsAuthAC(true))
+      authStore.setCurrentUser(data.currentUser)
+      authStore.setIsAuth(true)
 
     } catch(error: any) {
       setErrorMessage(error.message)
