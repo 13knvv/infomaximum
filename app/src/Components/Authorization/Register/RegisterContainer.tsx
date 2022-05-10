@@ -23,22 +23,15 @@ export const RegisterContainer = () => {
 
   const onSubmitRegister = useCallback( async (dataRegisterForm: DataRegisterFormType): Promise<void> => {
     try {
-      const response = await onRegister({ variables: {  firstName: dataRegisterForm.firstName,
-                               secondName: dataRegisterForm.secondName,
-                               email: dataRegisterForm.email, 
-                               password: dataRegisterForm.password } 
-                              })
-
+      const response = await onRegister({ variables: dataRegisterForm })
       setErrorMessage('')
       setToken(response.data.signup)
       await refetchCurrentUser() 
       authStore.setCurrentUser(data.currentUser)
       authStore.setIsAuth(true)
-
     } catch(error: any) {
       setErrorMessage(error.message)
     }
-  
   }, [])
 
   return <>

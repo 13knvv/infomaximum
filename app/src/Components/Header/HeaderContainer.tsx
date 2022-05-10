@@ -4,7 +4,7 @@ import { useStores } from '../../MobX/stores'
 import { removeToken } from '../../token/token'
 import { Header } from './Header'
 
-export const HeaderContainer = React.memo(() => {
+const HeaderContainer = React.memo(() => {
   const { authStore } = useStores()
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false)
 
@@ -27,3 +27,7 @@ export const HeaderContainer = React.memo(() => {
             authStore={authStore} />
   )
 })
+
+HeaderContainer.displayName = 'HeaderContainer'
+
+export default HeaderContainer

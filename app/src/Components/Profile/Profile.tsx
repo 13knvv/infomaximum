@@ -6,6 +6,7 @@ import { composeValidators, mustBeLetter, required, tooShort, validate } from '.
 import Button from '../common/Button/Button'
 import { NewDataUserType } from './ProfileContainer'
 import { AuthStoreType } from '../../MobX/authStore'
+import { observer } from 'mobx-react-lite'
 
 type ProfilePropsType = {
   authStore: AuthStoreType
@@ -14,7 +15,7 @@ type ProfilePropsType = {
   isSaved: boolean
 }
 
-export const Profile = React.memo((props: ProfilePropsType) => {
+export const Profile = observer((props: ProfilePropsType) => {
   const { firstName, secondName, email } = props.authStore.user
 
   const onSubmit = (newDataUser: NewDataUserType) => {
